@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>회원가입 페이지 입니당</h1>
+    <!-- signup2로 post의 형식으로 보낼 것이다(이동할 것이다) = action은 경로를 말하는것!-->
+    <!-- 그럼 이제 signup2 api를 만들어주러 index.js로 가자! -->
+    <form action="/signup2" method="post"> 
+        <input type="text" name="id" placeholder="사용할 아이디를 입력하세요">
+        <input type="password" name="password" placeholder="사용할 비밀번호를 입력하세요">
+        <input type="submit">
+    </form>
+</body>
+</html>
