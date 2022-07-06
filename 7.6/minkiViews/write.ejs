@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>글쓰기 페이지 입니다</h1>
+    <form action="/board/writing" method="get"> 
+        <!-- ejs에서는 해당하는 full path를 적어준다! 반면, js에서는 /~라고하면 '해당js/~' 임을 잊지말자 -->
+        <label>제목: </label>
+        <input type="text" name="_title">
+        <br>
+        <label>작성자: </label>
+        <input type="text" name="_writer">
+        <br>
+        <label>글 내용: </label>
+        <textarea name="_contents"></textarea>
+        <br>
+        <input type="submit">
+    </form>
+</body>
+</html>

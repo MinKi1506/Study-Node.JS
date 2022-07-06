@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //Javascript를 사용하는 공간. 여기에 주소를 이동하는 함수를 생성 할 것이다
+        function add(){
+            location.href = "/board/add" // localhost:3000/board/add 주소로 이동한다는 뜻
+        }    
+    </script>
+</head>
+<body>
+    <h1>회원전용 메인페이지 입니다</h1>
+    <!-- 게시글이 들어오는 공간 (table) 생성 -->
+    <!-- <table border="1">
+    <tr>
+        <th>글 번호</th>
+        <th>글 제목</th>
+        <th>작성자</th>
+    </tr>
+    <tr>
+        <!-- 서버에서 보내온 데이터를 ejs에서 출력하려면 다음과 같이 적는다 (주석으로 달면 인식 못함)-->
+        <!-- <td><%=content[0].No%></td>
+        <td><%=content[0].title%></td>
+        <td><%=content[0].writer%></td>
+    </tr>
+    <tr>
+        <td><%=content[1].No%></td>
+        <td><%=content[1].title%></td>
+        <td><%=content[1].writer%></td>
+    </tr>
+    <tr>
+        <td><%=content[2].No%></td>
+        <td><%=content[2].title%></td>
+        <td><%=content[2].writer%></td>
+    </tr>
+    </table> -->
+    
+    <table border="1">
+        <tr>
+            <th>글 번호</th>
+            <th>글 제목</th>
+            <th>작성자</th>
+        </tr>
+        <% for(let i = 0; i < content.length; i++){ %>
+        <tr>
+                <td><%=content[i].No%></td>
+                <td><%=content[i].title%></td>
+                <td><%=content[i].writer%></td>
+        </tr>  
+        <% } %> 
+        </table>
+
+    <!-- 게시글 작성 버튼 -->
+    <button onclick="add()">글 작성하기</button>
+</body>
+</html>
