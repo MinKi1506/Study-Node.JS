@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+   
+    <h1>게시글 수정</h1>
+    <form action="/board/update2" method="post">
+        <div style="display: none;">
+        <label>글번호: </label>
+        <input type="text" name="_no" value="<%=u_no%>">
+        </div>
+        <label>제목: </label>
+        <input type="text" name="_title" value="<%=u_title%>">
+        <br>
+        <label>글쓴이: </label>
+        <input type="text" name="_writer" value="<%=u_writer%>">
+        <br>
+        <label>글 내용: </label>
+        <textarea name="_contents"><%=u_contents%></textarea>
+        <br>
+        <input type="submit">
+    </form>
+    
+
+</body>
+</html>
