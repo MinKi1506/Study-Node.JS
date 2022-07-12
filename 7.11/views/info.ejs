@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sign(no, n){
+            location.href='/contract/sign?_no='+no+'&_n='+n;
+        }
+    </script>
+</head>
+<body>
+    <h1>계약서 상세페이지</h1>
+    <table>
+        <tr>
+            <th>문서번호</th>
+            <td>
+                <%=contract.No%>
+            </td>
+            <th>계약날짜</th>
+            <td>
+                <%=contract.contract_date%>
+            </td>
+            <th>계약내용</th>
+            <td>
+                <%=contract.content%>
+            </td>
+            <th>갑</th>
+            <td>
+                <%=contract.a_id%>
+            </td>
+            <th>을</th>
+            <td>
+                <%=contract.b_id%>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <%if(login_id == contract.a_id){%>
+                    <button onclick="sign('<%=contract.No%>', 0)">갑의 서명</button>
+                    <%}else if(login_id == contract.b_id){%>
+                        <button onclick="sign('<%=contract.No%>', 1)">을의 서명</button>
+                        <%}%>
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>

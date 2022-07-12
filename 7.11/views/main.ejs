@@ -6,11 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        
+        //계약서 작성
+        function addContract(){
+            location.href='./contract/addContract'
+        }
+        //계약서 클릭시, 상세정보
+        function info(no){
+            location.href='./contract/info?_no='+no
+        }
     </script>
 </head>
 <body>
     <h1>메인페이지 입니다</h1>
+    <div>
+        <button onclick="addContract()">계약서 작성</button>
+    </div>
+    <div>
+        <!-- 계약서 리스트 -->
+        <table border="1">
+            <tr>
+                <th>문서번호</th>
+                <th>갑</th>
+                <th>을</th>
+                <th>갑의 서명</th>
+                <th>을의 서명</th>
+            </tr>
+            <%if(contracts.length==0){%>
+                <tr>
+                    <!-- 5개의 셀을 합쳐준다 -->
+                    <td colspan="5">계약서가 존재하지 않습니다.</td>
+                </tr>
+            <%}else{ 
+                for(var i=0; i < contracts.length; i++){%>
+                    <tr onclick="info('<%=contracts[i].No%>')">
+                        <td>
+                            <%=contracts[i].No%>
+                        </td>
+                        <td>
+                            <%=contracts[i].a_id%>
+                        </td>
+                        <td>
+                            <%=contracts[i].b_id%>
+                        </td>
+                        <td>
+                            <%=contracts[i].a%>
+                        </td>
+                        <td>
+                            <%=contracts[i].b%>
+                        </td>
+                    </tr>
+                <%} 
+            }%>
+        </table>
+
+    </div>
+
     <a href="/login/logout">로그아웃</a>
 </body>
 </html>

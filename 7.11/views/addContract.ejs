@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>계약서 작성</h1>
+    <form action="/contract/addContract2" method="post">
+        <table>
+            <tr>
+                <td>
+                    <label>문서번호</label>
+                </td>
+                <td>
+                    <input type="text" name="_no">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>계약 내용</label>
+                </td>
+                <td>
+                    <textarea name="_content"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>을의 아이디</label>
+                </td>
+                <td>
+                    <input type="text" name="_b_id">
+                </td>
+            </tr>
+            <tr>
+                <input type='submit'>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
