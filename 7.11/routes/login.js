@@ -1,5 +1,7 @@
 let express =require('express');
 let router = express.Router();
+let Crypto = require('crypto'); // SHA256 암호화를 위한 crypto 라이브러리!
+let secretKey = 'slkccntgfrif3k35'
 
 //mysql 설정
 let mysql = require('mysql2')
@@ -26,10 +28,12 @@ router.get('/', function(req, res){
 router.post('/signin', function(req, res){
     let id = req.body._id;
     let password = req.body._password;
+    let crypto = Crypto.createHmac('sha256', secretKey).update(password).digest('hex');
+
     console.log('아이디는 '+id+'이고, 비밀번호는 '+password+'입니다');
 
     connection.query(
-        `select * from user where ID = ? and password = ?`,[id, password],
+        `select * from user where ID = ? and password = ?`,[id, crypto], //입력된 비밀번호를 SHA256화하여 DB의 암호화된 비밀번호와 비교해서 로그인한다
         function(err, result){
             if(err){
                 console.log('로그인 에러: '+err);
@@ -45,7 +49,6 @@ router.post('/signin', function(req, res){
             }
         }
     )
-
 })
 
 //회원가입 페이지 렌더링
@@ -56,7 +59,12 @@ router.get('/signup', function(req, res){
 //입력한 회원정보로 DB에 회원 추가
 router.post('/signup2',function(req, res){
     let id = req.body._id;
-    let password = req.body._password;
+    let password = req.body._password; //SHA256을 이용하여 암호화 해보자
+    
+    let crypto = Crypto.createHmac('sha256', secretKey).update(password).digest('hex');
+    console.log('암호화된 비밀번호: '+crypto);
+
+
     let name =req.body._name;
     let birth =req.body._birth;
     let phone =req.body._phone;
@@ -69,7 +77,7 @@ router.post('/signup2',function(req, res){
             }else{
                 if(result.length == 0){ //중복된 id가 아닌경우
                     connection.query(
-                        `insert into user values (?,?,?,?,?)`,[id,password,name,birth,phone],
+                        `insert into user values (?,?,?,?,?)`,[id,crypto,name,birth,phone],
                         function(err2){
                             if(err2){
                                 console.log('로그인 에러: '+err2);

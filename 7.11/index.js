@@ -56,6 +56,9 @@ app.use('/login', login);
 let sign = require('./routes/sign.js');
 app.use('/contract', sign);
 
+let smartContract = require('./routes/contract.js');
+app.use('/smartContract', smartContract);
+
 
 
 let port = 3000;
