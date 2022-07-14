@@ -1,6 +1,7 @@
 let express = require('express');
 let app = express();
 let seesion = require('express-session');
+require('dotenv').config();
 
 //post 통신방식 데이터를 받기위한 초기 설정
 app.use(express.json());
@@ -26,7 +27,7 @@ let connection = mysql.createConnection({
 //세션 설정
 app.use(
     seesion({
-        secret : "cckdkd2ffp3fkd3k",
+        secret : process.env.seseeion.session_secretkey,
         resave : false,
         saveUninitialized : true
     })

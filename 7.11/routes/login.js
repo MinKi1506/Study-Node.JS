@@ -1,18 +1,16 @@
 let express =require('express');
 let router = express.Router();
 let Crypto = require('crypto'); // SHA256 암호화를 위한 crypto 라이브러리!
-let secretKey = 'slkccntgfrif3k35'
 
 //mysql 설정
 let mysql = require('mysql2')
 let connection = mysql.createConnection({
-    host : 'localhost',
-    port : 3306,
-    user : 'root',
-    password : '1234',
-    database : 'minkidb'
+    host : process.env.host,
+    port : process.env.port,
+    user : process.env.user,
+    password : process.env.password,
+    database : process.env.database
 })
-
 
 //api 정의
 // '/'로그인화면
@@ -28,9 +26,9 @@ router.get('/', function(req, res){
 router.post('/signin', function(req, res){
     let id = req.body._id;
     let password = req.body._password;
-    let crypto = Crypto.createHmac('sha256', secretKey).update(password).digest('hex');
+    let crypto = Crypto.createHmac('sha256', process.env.secretKey).update(password).digest('hex');
 
-    console.log('아이디는 '+id+'이고, 비밀번호는 '+password+'입니다');
+    console.log(id+'님, 로그인 되었습니다.');
 
     connection.query(
         `select * from user where ID = ? and password = ?`,[id, crypto], //입력된 비밀번호를 SHA256화하여 DB의 암호화된 비밀번호와 비교해서 로그인한다
@@ -61,9 +59,8 @@ router.post('/signup2',function(req, res){
     let id = req.body._id;
     let password = req.body._password; //SHA256을 이용하여 암호화 해보자
     
-    let crypto = Crypto.createHmac('sha256', secretKey).update(password).digest('hex');
+    let crypto = Crypto.createHmac('sha256', process.env.secretKey).update(password).digest('hex');
     console.log('암호화된 비밀번호: '+crypto);
-
 
     let name =req.body._name;
     let birth =req.body._birth;

@@ -1,0 +1,47 @@
+// SPDX-License-Identifier: MIT
+pragma solidity >= 0.4.22 < 0.8.0;
+
+contract test {
+    //구조체 생성
+    struct contract_info{
+        string content;
+        string date;
+        address a;
+        address b;
+    }
+
+    //맵핑: 문서번호를 기준으로 contract_info 데이터를 불러오는 기능
+    mapping(string => contract_info) internal contract_list;
+
+
+    //맵핑 데이터에 계약서를 추가하는 함수
+    function add_Contract(string memory _no, string memory _content, string memory _date) public { //memory = 한번 입력 후에 휘발성으로 해당 string을 버릴 것이라는 뜻!
+        contract_list[_no].content = _content;
+        contract_list[_no].date = _date;
+    }
+
+    //계약서 서명 함수(방법 1)
+    function a_sign(string memory _no) public{
+        address signer = msg.sender;
+        contract_list[_no].a = signer;
+    }
+
+    function b_sign(string memory _no) public{
+        address signer = msg.sender;
+        contract_list[_no].b = signer;
+    }
+
+    //계약서 서명 함수(방법 2)
+
+
+
+    //계약 내용 확인 뷰 함수
+    function view_contract(string memory _no) public view 
+        returns(string memory, string memory, address, address){
+            string memory content = contract_list[_no].content;
+            string memory date = contract_list[_no].date;
+            address a = contract_list[_no].a;
+            address b = contract_list[_no].b;
+            return (content, date, a, b);
+    }
+}
